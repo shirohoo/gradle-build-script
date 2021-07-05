@@ -1,3 +1,4 @@
 # Gradle build script learn from Docs
 
-- I'll continue to write about gradle
+> - [Gradle User Manual](https://docs.gradle.org/current/userguide/userguide.html)
+> - [권남](https://kwonnam.pe.kr/wiki/gradle)

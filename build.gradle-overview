@@ -1,0 +1,47 @@
+/**
+ * [도메인] 스크립트 블록: 설명
+ * [PluginContainer] plugins: 사용할 Gradle-plugin 설정
+ * [ScriptHandler] initscript: 초기화 스크립트의 클래스패스 설정
+ * [ScriptHandler] buildscript: 빌드 스크립트의 클래스패스 설정
+ * [Project] allprojects: 서브 프로젝트를 포함하는 전체 프로젝트 관련 설정
+ * [Project] subprojects: 서브 프로젝트 관련 설정
+ * [ConfigurationContainer] configurations: 환경 구성 설정
+ * [RepositoryHandler] repositories: 사용할 저장소 설정(대부분 메이븐 중앙저장소 이용)
+ * [DependencyHandler] dependencies: 의존라이브러리 설정
+ * [ArtifactHandler] artifacts: 빌드 결과물에 대한 설정
+ */
+
+plugins {
+    id('java') // Java 플러그인 ID로 지정 예시
+    //id('org.gradle.java') // Java 플러그인 라이브러리로 지정 예시
+    //id('com.example.exampleplugin:version:1.0.0') // 외부 plugin 지정 예시(host필요)
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation("org.junit.jupiter:junit-jupiter:5.7.2")
+    testImplementation("org.assertj:assertj-core:3.19.0")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
+task(showDepend) {
+    plugins.each { println(it) }
+    repositories.each { println(it) }
+    dependencies.each { println(it) }
+    test.each { println(it) }
+}
+
+allprojects {
+
+}
+
+subprojects {
+
+}

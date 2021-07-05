@@ -7,5 +7,8 @@
  * in the user manual at https://docs.gradle.org/7.0/userguide/multi_project_builds.html
  */
 
+//멀티 모듈 프로젝트에서는 settings.gradle이 필수이다.
 rootProject.name = 'gradle'
-include('module-gradle')
+include 'module-common'
+include 'module-core'
+

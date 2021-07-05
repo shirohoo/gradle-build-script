@@ -1,32 +1,41 @@
-import java.sql.Timestamp
-
-class Descriptor {
-    String show() {
-        def date = new Date()
-        def timestamp = new Timestamp(date.getTime())
+buildscript {
+    ext {
+        springBootVersion = '2.5.0'
+        managementVersion = '1.0.11.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+        classpath "io.spring.gradle:dependency-management-plugin:$managementVersion"
     }
 }
 
-println "new Descriptor().show()"
-println new Descriptor().show()
+subprojects {
+    group 'io.module'
+    version '1.0'
 
-def scriptScope = 'SCRIPT'
-task(helloGroovy) {
-    def taskScope = 'TASK'
-    if (taskScope) {
-        def localScope = 'LOCAL'
-        println "$scriptScope : $taskScope : $localScope"
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
+        testImplementation 'org.assertj:assertj-core:3.19.0'
+    }
+
+    test {
+        useJUnitPlatform()
     }
 }
 
-def closure = {
-    def string = 'hello'
-    def GString = "gradle"
-    "String = $string : GString = $GString"
+project(':module-core') {
+    dependencies {
+        implementation project(':module-common')
+    }
 }
-println "closure"
-println closure()
-
-
-
-

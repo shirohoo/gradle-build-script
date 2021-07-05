@@ -1,0 +1,32 @@
+import java.sql.Timestamp
+
+class Descriptor {
+    String show() {
+        def date = new Date()
+        def timestamp = new Timestamp(date.getTime())
+    }
+}
+
+println "new Descriptor().show()"
+println new Descriptor().show()
+
+def scriptScope = 'SCRIPT'
+task(helloGroovy) {
+    def taskScope = 'TASK'
+    if (taskScope) {
+        def localScope = 'LOCAL'
+        println "$scriptScope : $taskScope : $localScope"
+    }
+}
+
+def closure = {
+    def string = 'hello'
+    def GString = "gradle"
+    "String = $string : GString = $GString"
+}
+println "closure"
+println closure()
+
+
+
+
